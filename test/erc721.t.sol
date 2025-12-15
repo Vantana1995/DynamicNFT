@@ -34,6 +34,5 @@ contract TestNFTCard is Test {
     function testCreatingURI() public view {
         console.log("Owner balance:", owner.balance);
         string memory uri = nftCard.tokenURI(1);
-        console.log(uri);
     }
 }
