@@ -82,7 +82,7 @@ contract NFTCard is ERC721SeaDrop, SVG, ENSManager {
         }
         balanceAndGeneratedText = _generateText(balanceStr, text);
     }
-git ad
+
     function _generateText(string memory balance, string memory text) private pure returns (string memory balanceAndGeneratedText) {
         balanceAndGeneratedText = string.concat( 
             BALANCE_START,
