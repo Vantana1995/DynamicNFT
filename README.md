@@ -173,33 +173,17 @@ The NFT card features:
 
 Example output:
 ```
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 550">
-
-  <defs><linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="30%" stop-color="#FFED4E"/><stop offset="50%" stop-color="#FFA500"/><stop offset="70%" stop-color="#DAA520"/><stop offset="100%" stop-color="#B8860B"/></linearGradient><linearGradient id="blackMatte" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#151515"/><stop offset="40%" stop-color="#101010"/><stop offset="100%" stop-color="#0a0a0a"/></linearGradient></defs>
-
-
-  <rect x="10" y="10" width="330" height="530" rx="20" fill="url(#blackMatte)" stroke="url(#gold)" stroke-width="20"/>
-
-
-  <text x="175" y="100" text-anchor="middle" fill="url(#gold)" font-size="28" font-family="serif" letter-spacing="3">MrPicule Fam</text>
-
-
-  <text x="30" y="200" text-anchor="start" fill="#FFD700" font-size="18" font-family="monospace">
-    {balance} ETH
-  </text>
-
-
-  <text x="175" y="260" text-anchor="middle" fill="#FFD700" font-size="22" font-family="serif" font-style="italic" font-weight="bold">
-    {Text2}
-  </text>
-
-
-  <text x="175" y="480"text-anchor="middle" fill="#777" font-size="12" font-family="monospace">
-    {owner}
-  </text>
-
-</svg>
-
+┌─────────────────────────────────┐
+│                                 │
+│         MrPicule fam            │
+│                                 │
+│  Your balance is 2.50000 Ether  │
+│                                 │
+│    Well, thats not bad          │
+│                                 │
+│                                 │
+│         MrPicule.eth            │
+└─────────────────────────────────┘
 ```
 
 ## 🔍 Key Technical Details
