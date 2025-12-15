@@ -29,7 +29,7 @@ contract SVG {
     string internal constant HEADER =
         '<text x="175" y="100" text-anchor="middle" fill="url(#gold)"\n'
         'font-size="28" font-family="serif" letter-spacing="3">\n'
-        'MrPicule Fam</text>\n';
+        'MrPicule fam</text>\n';
 
     // dynamic values go between START / END
     string internal constant BALANCE_START =

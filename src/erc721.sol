@@ -71,7 +71,16 @@ contract NFTCard is ERC721SeaDrop, SVG, ENSManager {
     
     function _generateText(address _owner) private view returns (string memory balanceAndGeneratedText) {
         uint256 balance = _owner.balance;
-        string memory balanceStr = Strings.toString(balance / 1 ether);
+        uint256 integerPart = balance / 1 ether;
+        uint256 fractionalPart = (balance % 1 ether) / 1e13; 
+        string memory balanceStr = string.concat(
+            "Your balance is ",
+            Strings.toString(integerPart),
+            ".",
+            _padLeft(Strings.toString(fractionalPart), 5),
+            " Ether"
+        );
+        
         string memory text;
         if (balance < 1 ether) {
             text = 'Try harder bro';
@@ -81,6 +90,27 @@ contract NFTCard is ERC721SeaDrop, SVG, ENSManager {
             text = 'Proof-of-Degen';
         }
         balanceAndGeneratedText = _generateText(balanceStr, text);
+    }
+
+
+    function _padLeft(string memory str, uint256 length) private pure returns (string memory) {
+        bytes memory strBytes = bytes(str);
+        if (strBytes.length >= length) {
+            return str;
+        }
+        
+        bytes memory result = new bytes(length);
+        uint256 padding = length - strBytes.length;
+        
+        for (uint256 i = 0; i < padding; i++) {
+            result[i] = "0";
+        }
+        
+        for (uint256 i = 0; i < strBytes.length; i++) {
+            result[padding + i] = strBytes[i];
+        }
+        
+        return string(result);
     }
 
     function _generateText(string memory balance, string memory text) private pure returns (string memory balanceAndGeneratedText) {
