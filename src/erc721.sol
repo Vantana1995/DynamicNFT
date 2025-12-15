@@ -10,7 +10,6 @@ import { ENSManager } from "./ensManager.sol";
 
 contract NFTCard is ERC721SeaDrop, SVG, ENSManager {
     
-
     constructor(address[] memory _allowedSeaDrop, address _registrar, address _ens) 
         ERC721SeaDrop('MrPiculeFam', 'MPF', _allowedSeaDrop)
         ENSManager(_registrar, _ens) {
@@ -49,16 +48,11 @@ contract NFTCard is ERC721SeaDrop, SVG, ENSManager {
     function _base64Convert(address _owner) private view returns (string memory _svg) {    
         string memory ownerStr = _getOwnerString(_owner);
         string memory header = _createHeaderAndBackground();
-        (string memory balanceStr, string memory text2) = _generateText(_owner);
+        string memory balanceAndGeneratedText = _generateText(_owner);
 
         _svg = Base64.encode(bytes(string.concat(
             header,
-            BALANCE_START,
-            balanceStr,
-            TEXT_END,
-            TEXT2_START,
-            text2,
-            TEXT_END,
+            balanceAndGeneratedText,
             OWNER_START,
             ownerStr,
             TEXT_END,
@@ -75,15 +69,27 @@ contract NFTCard is ERC721SeaDrop, SVG, ENSManager {
         }
     }
     
-    function _generateText(address _owner) private view returns (string memory balanceStr, string memory text2) {
+    function _generateText(address _owner) private view returns (string memory balanceAndGeneratedText) {
         uint256 balance = _owner.balance;
-        balanceStr = Strings.toString(balance / 1 ether);
+        string memory balanceStr = Strings.toString(balance / 1 ether);
+        string memory text;
         if (balance < 1 ether) {
-            text2 = 'Try harder bro';
+            text = 'Try harder bro';
         } else if(balance >= 1 ether && balance < 10 ether) {
-            text2 = 'Well, thats not bad';
+            text = 'Well, thats not bad';
         } else {
-            text2 = 'Proof-of-Degen';
+            text = 'Proof-of-Degen';
         }
+        balanceAndGeneratedText = _generateText(balanceStr, text);
+    }
+git ad
+    function _generateText(string memory balance, string memory text) private pure returns (string memory balanceAndGeneratedText) {
+        balanceAndGeneratedText = string.concat( 
+            BALANCE_START,
+            balance,
+            TEXT_END,
+            TEXT2_START,
+            text,
+            TEXT_END);
     }
 }
